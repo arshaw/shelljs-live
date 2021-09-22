@@ -15,8 +15,8 @@ jobs:
         id: node-cache
         with:
           # https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: '.yarn/cache'
+          key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
       - name: Install Dependencies
         run: yarn install
       - name: Build Project
