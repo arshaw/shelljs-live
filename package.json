@@ -19,7 +19,8 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "./test.sh"
+    "test": "./test.sh",
+    "ci": "yarn run clean && yarn run build && yarn run test && echo 'Ready for release'"
   },
   "peerDependencies": {
     "shelljs": "^0.8.4"
