@@ -18,8 +18,7 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "./test.sh",
-    "prepack": "yarn run build"
+    "test": "./test.sh"
   },
   "peerDependencies": {
     "shelljs": "^0.8.4"
