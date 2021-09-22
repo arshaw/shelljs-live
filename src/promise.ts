@@ -1,12 +1,13 @@
 import { live as origLive, Options } from './'
 
-export function live(tokens: string[], options?: Options): Promise<void> {
+export function live(command: string | string[], options?: Options): Promise<void> {
   return new Promise((resolve, reject) => {
-    origLive(tokens, options, (status) => {
+    origLive(command, options, (status) => {
       if (status === 0) {
         resolve()
       } else {
-        reject(new Error(`Command '${tokens[0]}' failed with status code ${status}`))
+        const command0 = Array.isArray(command) ? command[0] : command
+        reject(new Error(`Command '${command0}' failed with status code ${status}`))
       }
     })
   })
