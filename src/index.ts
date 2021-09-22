@@ -1,19 +1,16 @@
 import { SpawnOptions } from 'child_process'
-import * as spawn from 'cross-spawn'
+import spawn from 'cross-spawn'
 import { config } from 'shelljs'
-import { parseCommand, buildErrorMessage } from './utils'
+import { Options, Callback, parseCommand, buildErrorMessage } from './utils'
 
-export type Options = SpawnOptions & { async?: boolean, fatal?: boolean, silent?: boolean }
-export type Callback = (status: number | null) => void
-
-export function live(command: string | string[], options?: Options): number | null
-export function live(command: string | string[], callback: Callback): number | null
-export function live(
+function live(command: string | string[], options?: Options): number | null
+function live(command: string | string[], callback: Callback): number | null
+function live(
   command: string | string[],
   options: Options | undefined,
   callback: Callback,
 ): number | null
-export function live(
+function live(
   command: string | string[],
   optionsOrCallback?: Options | Callback,
   callback?: Callback,
@@ -62,3 +59,5 @@ export function live(
     return status
   }
 }
+
+export = live

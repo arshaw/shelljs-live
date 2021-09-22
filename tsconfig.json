@@ -4,6 +4,7 @@
     "target": "ES2019",
     "module": "CommonJS",
     "moduleResolution": "Node",
+    "esModuleInterop": true,
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist"

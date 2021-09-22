@@ -1,7 +1,7 @@
-import { live as origLive, Options } from './'
-import { parseCommand, buildErrorMessage } from './utils'
+import origLive from './'
+import { Options, parseCommand, buildErrorMessage } from './utils'
 
-export function live(command: string | string[], options?: Options): Promise<void> {
+function live(command: string | string[], options?: Options): Promise<void> {
   return new Promise((resolve, reject) => {
     origLive(command, options, (status) => {
       if (status === 0) {
@@ -14,4 +14,4 @@ export function live(command: string | string[], options?: Options): Promise<voi
   })
 }
 
-export { Options } from './'
+export = live

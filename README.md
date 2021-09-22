@@ -32,7 +32,7 @@ live(command [, options] [, callback]) => statusCode
 Synchronous usage:
 
 ```js
-const { live } = require('shelljs-live')
+const live = require('shelljs-live')
 
 const statusCode = live(['ps', '-ax']) // live('ps -ax') works too. not recommended
 if (statusCode === 0) {
@@ -45,7 +45,7 @@ if (statusCode === 0) {
 Asynchronous usage:
 
 ```js
-const { live } = require('shelljs-live')
+const live = require('shelljs-live')
 
 live(['ps', '-ax'], (statusCode) => {
   if (statusCode === 0) {
@@ -71,7 +71,7 @@ live(command [, options]) => promise
 Usage:
 
 ```js
-const { live } = require('shelljs-live/promise')
+const live = require('shelljs-live/promise')
 
 live(['ps', '-ax']).then(() => {
   console.log('Success')
@@ -83,7 +83,7 @@ live(['ps', '-ax']).then(() => {
 Or if you want to use `await` and don't care about handling errors:
 
 ```js
-const { live } = require('shelljs-live/promise')
+const live = require('shelljs-live/promise')
 
 await live(['ps', '-ax'])
 console.log('Success')

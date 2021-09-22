@@ -1,3 +1,7 @@
+import { SpawnOptions } from 'child_process'
+
+export type Options = SpawnOptions & { async?: boolean, fatal?: boolean, silent?: boolean }
+export type Callback = (status: number | null) => void
 
 export function parseCommand(command: string | string[]): [string, string[], boolean] {
   return Array.isArray(command)

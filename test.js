@@ -1,8 +1,8 @@
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 const shell = require('shelljs')
-const { live } = require('./dist/index')
-const { live: promiseLive } = require('./dist/promise')
+const live = require('./dist/index')
+const promiseLive = require('./dist/promise')
 
 const argv = yargs(hideBin(process.argv)).argv
 shell.config.silent = Boolean(argv.silent)
