@@ -1,6 +1,6 @@
 {
   "name": "shelljs-live",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "https://github.com/arshaw/shelljs-live.git",
   "author": "Adam Shaw",
   "license": "MIT",
@@ -11,7 +11,8 @@
     "./promise": "./dist/promise.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "promise.*"
   ],
   "scripts": {
     "preinstall": "npx only-allow yarn",
