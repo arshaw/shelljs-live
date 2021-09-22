@@ -19,8 +19,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "./test.sh",
-    "prepack": "yarn run clean && yarn run build",
-    "prepublish": "yarn run test"
+    "prepack": "yarn run build"
   },
   "peerDependencies": {
     "shelljs": "^0.8.4"

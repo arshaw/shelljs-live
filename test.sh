@@ -4,7 +4,7 @@
 cd "`dirname $0`"
 
 # check a failure run
-resD=$(node ./test.js --fatal 2> /dev/null)
+resD=$(yarn node ./test.js --fatal 2> /dev/null)
 exitCode=$?
 if [ "$exitCode" == 0 ]; then
   echo "Failure code should be given"
@@ -12,7 +12,7 @@ if [ "$exitCode" == 0 ]; then
 fi
 
 # check successful run
-resA=$(node ./test.js 2> /dev/null)
+resA=$(yarn node ./test.js 2> /dev/null)
 exitCode=$?
 if [ "$exitCode" != 0 ]; then
   echo "Failure A"
@@ -21,7 +21,7 @@ fi
 
 # check another successful run,
 # but run a test using the cwd as 'src'
-resB=$(node ./test.js --cwd src 2> /dev/null)
+resB=$(yarn node ./test.js --cwd src 2> /dev/null)
 exitCode=$?
 if [ "$exitCode" != 0 ]; then
   echo "Failure B"
@@ -33,7 +33,7 @@ if [ "$resA" == "$resB" ]; then
 fi
 
 # check shell evaluation
-resC=$(node ./test.js --shell src 2> /dev/null)
+resC=$(yarn node ./test.js --shell src 2> /dev/null)
 exitCode=$?
 if [ "$exitCode" != 0 ]; then
   echo "Failure C"
@@ -45,7 +45,7 @@ if [ "$resA" != "$resC" ]; then
 fi
 
 # check a silent run
-resC=$(node ./test.js --silent)
+resC=$(yarn node ./test.js --silent)
 if [ -n "$resC" ]; then
   echo "Failure, output should be silent"
   exit 1
