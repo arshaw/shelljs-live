@@ -11,8 +11,8 @@
     "./promise": "./dist/promise.js"
   },
   "files": [
-    "dist",
-    "promise.*"
+    "/dist",
+    "/promise.*"
   ],
   "scripts": {
     "clean": "rm -rf dist",
