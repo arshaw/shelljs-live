@@ -1,9 +1,10 @@
 import { SpawnOptions } from 'child_process'
 import * as spawn from 'cross-spawn'
 import { config } from 'shelljs'
+import { parseCommand, buildErrorMessage } from './utils'
 
-export type Callback = (status: number | null) => void
 export type Options = SpawnOptions & { async?: boolean, fatal?: boolean, silent?: boolean }
+export type Callback = (status: number | null) => void
 
 export function live(command: string | string[], options?: Options): number | null
 export function live(command: string | string[], callback: Callback): number | null
@@ -26,20 +27,7 @@ export function live(
     options = optionsOrCallback || {}
   }
 
-  let command0: string
-  let args: string[]
-  let shell: boolean
-
-  if (Array.isArray(command)) {
-    command0 = command[0]
-    args = command.slice(1)
-    shell = false
-  } else {
-    command0 = command
-    args = []
-    shell = true
-  }
-
+  const [command0, args, shell] = parseCommand(command)
   if (!command0) {
     throw new Error('Must specify a command')
   }
@@ -47,15 +35,15 @@ export function live(
   const fatal = options.fatal ?? config.fatal
   const silent = options.silent ?? config.silent
   const spawnOptions: SpawnOptions = {
-    ...(silent ? {} : { stdio: 'inherit' }),
     ...options,
+    ...(silent ? {} : { stdio: 'inherit' }),
     shell,
   }
 
   function handleStatus(status: number | null) {
     if (status === null || status !== 0) {
       if (fatal) {
-        console.error(`Command '${command0}' failed with status code ${status}`)
+        console.error(buildErrorMessage(command0, status))
         process.exit(status || 1)
       }
     }

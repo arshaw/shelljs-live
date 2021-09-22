@@ -1,4 +1,5 @@
 import { live as origLive, Options } from './'
+import { parseCommand, buildErrorMessage } from './utils'
 
 export function live(command: string | string[], options?: Options): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -6,8 +7,8 @@ export function live(command: string | string[], options?: Options): Promise<voi
       if (status === 0) {
         resolve()
       } else {
-        const command0 = Array.isArray(command) ? command[0] : command
-        reject(new Error(`Command '${command0}' failed with status code ${status}`))
+        const errorMessage = buildErrorMessage(parseCommand(command)[0], status)
+        reject(new Error(errorMessage))
       }
     })
   })
