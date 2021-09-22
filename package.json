@@ -10,6 +10,9 @@
     ".": "./dist/index.js",
     "./promise": "./dist/promise.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc",
