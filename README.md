@@ -22,12 +22,12 @@ The `shelljs` package is a peerDependency of `shelljs-live` and must be installe
 live(command [, options] [, callback]) => statusCode
 ```
 
-- `command` - A string **OR** an array of strings:
-  - If a string, run as a shell statement. The shell might expand globs or have opinions about escaping. This is not very portable.
-  - If an *array* of strings, all arguments are piped directly to a command and no escaping is necessary. **This is recommended.**
+- `command`
+  - Array of unescaped strings. Cannot contain shell logic. **Recommended for portability.**
+  - A string. Executed as a shell statement. Please take care when escaping input.
 - `options` - *Optional*. [More info](#options).
 - `callback` - *Optional*. Called on success/failure. Receives the `statusCode`. Implies the `async:true` option.
-- `statusCode` - A number, or in some cases `null`. Success means `statusCode === 0`.
+- `statusCode` - Number, or in some cases `null`. Success means `statusCode === 0`.
 
 Synchronous usage:
 
@@ -62,11 +62,11 @@ live(['ps', '-ax'], (statusCode) => {
 live(command [, options]) => promise
 ```
 
-- `command`: A string **OR** an array of strings:
-  - If a string, run as a shell statement. The shell might expand globs or have opinions about escaping. This is not very portable.
-  - If an *array* of strings, all arguments are piped directly to a command and no escaping is necessary. **This is recommended.**
+- `command`
+  - Array of unescaped strings. Cannot contain shell logic. **Recommended for portability.**
+  - A string. Executed as a shell statement. Please take care when escaping input.
 - `options`: *Optional*. [More info](#options).
-- `promise`: A [Promise] that triggers success when status code equals `0`, failure otherwise. Neither handler receives the status code.
+- `promise`: [Promise] that triggers success when status code equals `0`, failure otherwise. Neither handler receives the status code.
 
 Usage:
 
